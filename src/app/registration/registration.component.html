@@ -1,0 +1,71 @@
+<div class="body">
+    <div class="container">
+      <div class="title">Registration</div>
+      <div class="content">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">First Name</span>
+              <input type="text" placeholder="Enter your first name" id="fname" formControlName="fname" required>
+              <div *ngIf="registerForm.get('fname')?.invalid && registerForm.get('fname')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is required.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Last Name</span>
+              <input type="text" placeholder="Enter your last name" id="lname" formControlName="lname" required>
+              <div *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is required.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input type="text" placeholder="Enter your email" id="email" formControlName="email" required>
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is not valid here.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Phone Number</span>
+              <input type="text" placeholder="Enter your number" id="phone" formControlName="phone" required>
+              <div *ngIf="registerForm.get('phone')?.errors?.['invalidPhone'] && registerForm.get('phone')?.touched" class="text-danger">
+                Phone number is not valid.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Password</span>
+              <input type="password" placeholder="Enter your password" id="password" formControlName="password" required>
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is required.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input type="password" placeholder="Confirm your password" id="confirmPassword" formControlName="confirmPassword">
+              <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="text-danger">
+                Passwords do not match.
+              </div>
+            </div>
+          </div>
+          <div class="button">
+            <input type="submit" value="Register">
+          </div>
+        </form>
+        <p class="small">Already Registered ? <a routerLink="/login" style="color: blue; text-decoration: none;">Login Here</a></p>
+      </div>
+    </div>
+    <div class="success-message" *ngIf="showSuccessMessage">
+      <div class="message-content">
+          Registration Successful !
+      </div>
+    </div>
+    <div class="success-message" *ngIf="showError" style="background-color: red;">
+      <div class="message-content">
+          Form is not valid/Filled !
+      </div>
+    </div>
+</div>

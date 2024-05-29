@@ -1,0 +1,51 @@
+<div class="body">
+    <div class="container">
+      <div class="title">Payment</div>
+      <div class="content">
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Card Number</span>
+              <input type="text" placeholder="Enter the Card Number" id="cardNumber" formControlName="cardNumber" required>
+              <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is required.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Expiry Date</span>
+              <input type="month" placeholder="month" id="month" formControlName="month" required>
+              <div *ngIf="paymentForm.get('month')?.invalid && paymentForm.get('month')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is required.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Name on Card</span>
+              <input type="text" placeholder="Enter the name on Card" id="customerName" formControlName="customerName" required>
+              <div *ngIf="paymentForm.get('customerName')?.invalid && paymentForm.get('customerName')?.touched" class="text-danger">
+                <!-- ? is there as that field may have null value-->
+                *this field is not valid here.
+              </div>
+            </div>
+            <div class="input-box">
+              <span class="details">Card Security Code</span>
+              <input type="text" placeholder="Enter the security code" id="securityCode" formControlName="securityCode" required>
+              <div *ngIf="paymentForm.get('securityCode')?.invalid && paymentForm.get('securityCode')?.touched" class="text-danger">
+                *this field is not valid here.
+              </div>
+            </div>
+          </div>
+          <div class="button">
+            <input type="submit" value="submit">
+          </div>
+        </form>
+        <p class="small">Cancel Payment ? <a routerLink="/dashboard" style="color: blue; text-decoration: none;">Cancel</a></p>
+      </div>
+    </div>
+    <div class="success-message" *ngIf="showSuccessMessage">
+      <div class="message-content">
+          Payment Successful !
+      </div>
+    </div>
+</div>
